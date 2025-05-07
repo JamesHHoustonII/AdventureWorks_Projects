@@ -1,0 +1,71 @@
+Querys:
+
+1) Query: Top Customers by Purchase
+
+SELECT TOP 5 CustomerID, SUM(TotalDue) AS TotalSpent 
+FROM Sales.SalesOrderHeader 
+GROUP BY CustomerID 
+ORDER BY TotalSpent DESC;
+
+Summary: This query finds the top five customers who have spent the most money. It looks at all purchases made by each customer, adds them up, and then lists the biggest spenders from highest to lowest.
+
+2) Query: Monthly Revenue Trends
+
+SELECT YEAR(OrderDate) AS Year, MONTH(OrderDate) AS Month, SUM(TotalDue) AS Revenue 
+FROM Sales.SalesOrderHeader 
+GROUP BY YEAR(OrderDate), MONTH(OrderDate) 
+ORDER BY Year DESC, Month DESC;
+
+Summary: This query calculates total sales revenue for each month and year. It helps identify trends in business performance, showing which months generate the most income.
+
+3) Query: Low Stock Products
+
+SELECT TOP 5 p.ProductID, p.Name, pi.Quantity 
+FROM Production.ProductInventory pi 
+JOIN Production.Product p ON pi.ProductID = p.ProductID 
+WHERE pi.Quantity < 5 
+ORDER BY pi.Quantity ASC;
+
+Summary: This query finds products that are running low on inventory. It lists the top five items with fewer than five units left, helping businesses identify which products need restocking.
+
+4) Query: Monthly Revenue Trends
+
+SELECT YEAR(OrderDate) AS Year, MONTH(OrderDate) AS Month, SUM(TotalDue) AS Revenue 
+FROM Sales.SalesOrderHeader 
+GROUP BY YEAR(OrderDate), MONTH(OrderDate) 
+ORDER BY Year DESC, Month DESC;
+
+Summary: This query calculates total sales revenue for each month and year. It helps identify trends in business performance, showing which months generate the most income.
+
+5) Query: Low Stock Products
+
+SELECT TOP 5 p.ProductID, p.Name, pi.Quantity 
+FROM Production.ProductInventory pi 
+JOIN Production.Product p ON pi.ProductID = p.ProductID 
+WHERE pi.Quantity < 5 
+ORDER BY pi.Quantity ASC;
+
+Summary: This query finds products that are running low on inventory. It lists the top five items with fewer than five units left, helping businesses identify which products need restocking.
+
+6) Query: Best Performing Sales Representatives
+
+SELECT TOP 5 SalesPersonID, COUNT(SalesOrderID) AS OrdersHandled 
+FROM Sales.SalesOrderHeader 
+WHERE SalesPersonID IS NOT NULL 
+GROUP BY SalesPersonID 
+ORDER BY OrdersHandled DESC;
+
+Summary: This query identifies the top five sales representatives based on the number of completed orders. It helps businesses recognize high-performing employees.
+
+7) Query: Email Campaign Reach
+
+SELECT EmailPromotion, COUNT(BusinessEntityID) AS CustomersReached 
+FROM Person.Person 
+GROUP BY EmailPromotion;
+
+Summary: This query tracks customer engagement with marketing emails. It shows how many customers were reached at each level of email promotion, helping businesses understand the effectiveness of their marketing efforts.
+
+
+
+
+
